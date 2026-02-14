@@ -1,1 +1,2 @@
 https://github.com/multixspace/boot
+https://github.com/multixspace/core
