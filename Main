@@ -1,8 +1,8 @@
-; MULTIX System Assembly v1.0.1
+; MULTIX System Assembly v1.0.2
 ; MULTIX OS Kernel - Entry Point
 
 RAM_START 0x80000000
-STACK_SIZE 8kb
+STACK_SIZE 0x2000
 
 Start RAM_START
     ; 1. Ініціалізація Тіньового Стека (Shadow Stack)
