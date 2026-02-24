@@ -1,13 +1,13 @@
 ; MULTIX System Assembly
 ; Драйвер UART (Вивід тексту)
 
-% UART_BASE 0x10000000
+UART_BASE 0x10000000
 
-: Init
+Init
     ; Ініціалізація
     = [x31++]
 
-: SendChar
+SendChar
     ; Приймає символ у регістрі x10
     x5 UART_BASE
     [x5] x10
