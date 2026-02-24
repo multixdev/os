@@ -1,4 +1,4 @@
-; MULTIX System Assembly v0.0.1
+; MULTIX System Assembly 0.0.1
 ; MULTIX OS Kernel - Entry Point
 
 RAM_START 0x80000000
