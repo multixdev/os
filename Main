@@ -1,4 +1,4 @@
-; MULTIX System Assembly 0.0.1
+; MULTIX System Assembly 0.0.2
 ; MULTIX OS Kernel - Entry Point
 
 RAM_START 0x80000000
@@ -9,26 +9,26 @@ Start RAM_START
     x31 RAM_START + STACK_SIZE
     
     ; 2. Ініціалізація підсистем
-    kernel/Memory.Init [--x31]
-    drivers/Uart.Init [--x31]
+    kernel/Memory.Init -x31
+    drivers/Uart.Init -x31
     
     ; 3. Друкуємо 'M' (Тест UART)
     x10 'M'
-    drivers/Uart.SendChar [--x31]
+    drivers/Uart.SendChar -x31
     
     ; 4. Тест виділення пам'яті (просимо 1024 байти)
     x10 1024
-    kernel/Memory.Alloc [--x31]
+    kernel/Memory.Alloc -x31
     
     ; x10 тепер містить адресу виділеної пам'яті (0x80010000)
     ; Якщо успішно, надрукуємо 'O', якщо помилка 'E'
     
     ? x10 = 0
         x10 'E'
-        drivers/Uart.SendChar [--x31]
+        drivers/Uart.SendChar -x31
     :
         x10 'O'
-        drivers/Uart.SendChar [--x31]
+        drivers/Uart.SendChar -x31
         
     ; Зупинка системи
     _
