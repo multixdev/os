@@ -4,7 +4,7 @@
 RAM_START 0x80000000
 STACK_SIZE 0x2000
 
-Start RAM_START
+# 0 RAM_START
     ; 1. Ініціалізація Тіньового Стека (Shadow Stack)
     s0 RAM_START + STACK_SIZE
     
