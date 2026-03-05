@@ -1,4 +1,3 @@
-; MULTIX System Assembly v0.0.4
 ; System/Memory - Лінійний Менеджер Фізичної Пам'яті
 
 RAM_MAX 0x88000000       ; Кінець доступної RAM (напр. 128 MB)
