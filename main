@@ -21,7 +21,7 @@ STACK_SIZE 0x2000
     system.process.init -s0
     
     system.hardware.wakeUpAllCores -s0
-    
+
     system.process.run -s0
     
     system.panic "main loop exited"
