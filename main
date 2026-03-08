@@ -2,12 +2,12 @@
 ; Точка входу ОС (Bootloader)
 :
     ; Читаємо константу
-    x1 [config.mhartid]
+    x1 [config.M_HART_ID]
 
     ; Якщо я НЕ Ядро 0 - йду в сплячий цикл (відносний перехід)
     ? x1 > 0 . sleep_core
         
-    s0 config.ram_start + config.stack_size
+    s0 config.RAM_START + config.STACK_SIZE
 
     ; Абсолютні виклики (Файли-Мітки)
     system.hardware.init -s0
