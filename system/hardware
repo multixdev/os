@@ -1,2 +1,5 @@
 init
     s0+
+
+wake_up_all_cores
+    s0+
