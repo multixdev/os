@@ -1,27 +1,26 @@
-; MULTIX System Assembly v0.0.11
+; MULTIX System Assembly v0.0.14
 ; Точка входу ОС (Bootloader)
 
-RAM_START  0x80000000
-STACK_SIZE 0x2000
+; Читаємо константу
+x1 [config.mhartid]
 
-# 0 
-    ; Читаємо апаратний номер ядра
-    x1 [mhartid]
-    
-    ? x1 > 0
-        %                           ; Безкінечний цикл для сплячих ядер
-            _                       
-            
-    ; Налаштовуємо тіньовий стек
-    s0 RAM_START + STACK_SIZE
-    
-    ; Єдиний стиль: snake_case для шляхів та міток
-    system.hardware.init -s0
-    system.memory.init -s0
-    system.process.init -s0
-    
-    system.hardware.wake_up_all_cores -s0
-    
-    system.process.run -s0
-    
-    system.panic "main loop exited"
+; Якщо я НЕ Ядро 0 - йду в сплячий цикл (відносний перехід)
+? x1 > 0 .sleep_core
+        
+s0 config.ram_start + config.stack_size
+
+; Абсолютні виклики (Файли-Мітки)
+system.hardware.init -s0
+system.memory.init -s0
+system.process.init -s0
+system.hardware.wake_up_all_cores -s0
+system.process.run -s0
+
+system.panic "main loop exited"
+
+; ---------------------------------------------------------
+; Локальні мітки
+; ---------------------------------------------------------
+:sleep_core
+    _                         ; WFI (Wait For Interrupt)
+    .sleep_core               ; Безумовний перехід на початок циклу
