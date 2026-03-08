@@ -1,6 +1,6 @@
 ; MULTIX System Assembly v0.0.14
 ; Точка входу ОС (Bootloader)
-
+:
     ; Читаємо константу
     x1 [config.mhartid]
 
