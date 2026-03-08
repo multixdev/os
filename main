@@ -1,34 +1,27 @@
-; MULTIX System Assembly v0.0.9
-; MULTIX OS - Entry Point
+; MULTIX System Assembly v0.0.10
+; Точка входу ОС (Bootloader)
 
-RAM_START 0x80000000
+RAM_START  0x80000000
 STACK_SIZE 0x2000
 
 # 0 
-    ; 1. Ініціалізація Тіньового Стека (Shadow Stack)
+    ; Читаємо апаратний номер ядра
+    x1 [mhartid]
+    
+    ? x1 > 0
+        %                           ; Безкінечний цикл для сплячих ядер
+            _                       
+            
+    ; Налаштовуємо тіньовий стек
     s0 RAM_START + STACK_SIZE
     
-    ; 2. Ініціалізація підсистем
-    system.Memory.Init -s0
-    drivers.Uart.Init -s0
+    ; Виклики через camelCase (пласка ієрархія, прямі шляхи)
+    system.hardware.init -s0
+    system.memory.init -s0
+    system.process.init -s0
     
-    ; 3. Друкуємо 'M' (Тест UART)
-    x10 'M'
-    drivers.Uart.SendChar -s0
+    system.hardware.wakeUpAllCores -s0
     
-    ; 4. Тест виділення пам'яті (просимо 1024 байти)
-    x10 1024
-    system.Memory.Alloc -s0
+    system.process.run -s0
     
-    ; x10 тепер містить адресу виділеної пам'яті (0x80010000)
-    ; Якщо успішно, надрукуємо 'O', якщо помилка 'E'
-    
-    ? x10 = 0
-        x10 'E'
-        drivers.Uart.SendChar -s0
-    :
-        x10 'O'
-        drivers.Uart.SendChar -s0
-        
-    ; Зупинка системи
-    _
+    system.panic "main loop exited"
