@@ -1,4 +1,4 @@
-; MULTIX System Assembly v0.0.14
+; MULTIX System Assembly v0.0.15
 ; Точка входу ОС (Bootloader)
 :
     ; Читаємо константу
