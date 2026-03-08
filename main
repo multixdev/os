@@ -5,7 +5,7 @@
 x1 [config.mhartid]
 
 ; Якщо я НЕ Ядро 0 - йду в сплячий цикл (відносний перехід)
-? x1 > 0 .sleep_core
+? x1 > 0 . sleep_core
         
 s0 config.ram_start + config.stack_size
 
