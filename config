@@ -1,7 +1,7 @@
-RAM_START
-RAM_MAX
-STACK_SIZE
-FREE_RAM_START
-FREE_LIST_HEAD
-PAGE_SIZE
-M_HART_ID
+ram_start
+ram_max
+stack_size
+free_ram_start
+free_list_head
+page_size
+mhartid
