@@ -19,5 +19,5 @@
     system.panic "main loop exited"
 
 : sleep_core
-    _                         ; WFI (Wait For Interrupt)
+    !                         ; WFI (Wait For Interrupt)
     . sleep_core              ; Безумовний перехід на початок циклу
