@@ -1,4 +1,4 @@
-; MULTIX System Assembly v0.0.16
+; MULTIX System Assembly v0.0.17
 ; Точка входу ОС
 :
     ; Читаємо апаратний номер ядра з регістра CSR
