@@ -1,23 +1,25 @@
 ; MULTIX System Assembly v0.0.16
-; Точка входу ОС (Bootloader)
+; Точка входу ОС
 :
-    ; Читаємо константу
-    x1 [config.mhartid]
+    ; Читаємо апаратний номер ядра з регістра CSR
+    x1 csr.mhartid
 
-    ; Якщо я НЕ Ядро 0 - йду в сплячий цикл (відносний перехід)
+    ; Якщо я НЕ Ядро 0 - йду спати
     ? x1 > 0 . sleep_core
-        
-    s0 [config.ram_start] + [config.stack_size]
+            
+    ; Вираховуємо адресу стеку (без квадратних дужок - це просто числа!)
+    s0 config.ram_start + config.stack_size
 
-    ; Абсолютні виклики (Файли-Мітки)
-    system.hardware.init -s0
-    system.memory.init -s0
-    system.process.init -s0
-    system.hardware.wake_up_all_cores -s0
-    system.process.run -s0
+    ; Запуск модулів. Компілятор сам розкриє цілі (наприклад, init.milkv_jupiter)
+    system.hardware.init
+    system.memory.init
+    system.process.init
+    
+    system.hardware.wake_up_all_cores
+    system.process.run
 
     system.panic "main loop exited"
 
 : sleep_core
-    !                         ; WFI (Wait For Interrupt)
-    . sleep_core              ; Безумовний перехід на початок циклу
+    !                         ; HALT (Wait For Interrupt)
+    . sleep_core
