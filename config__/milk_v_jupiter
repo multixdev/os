@@ -1,0 +1,6 @@
+ram_start
+ram_max
+stack_size
+free_ram_start
+free_list_head
+page_size
