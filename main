@@ -8,17 +8,17 @@
     ? x1 > 0 . sleep_core
             
     ; Вираховуємо адресу стеку (без квадратних дужок - це просто числа!)
-    s0 config.ram_start + config.stack_size
+    ;s0 config.RAM_START + config.STACK_SIZE
 
     ; Запуск модулів. Компілятор сам розкриє цілі (наприклад, init.milkv_jupiter)
-    system.hardware.init
-    system.memory.init
-    system.process.init
+    @ system.hardware.init
+    @ system.memory.init
+    @ system.process.init
     
-    system.hardware.wake_up_all_cores
-    system.process.run
+    @ system.hardware.wake_up_all_cores
+    @ system.process.run
 
-    system.panic "main loop exited"
+    ;@ system.panic "main loop exited"
 
 : sleep_core
     !                       ; HALT (Wait For Interrupt)
