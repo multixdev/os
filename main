@@ -7,8 +7,9 @@
     ; Якщо я НЕ Ядро 0 - йду спати
     ? x1 > 0 . sleep_core
             
-    ; Вираховуємо адресу стеку (без квадратних дужок - це просто числа!)
-    ;s0 config.RAM_START + config.STACK_SIZE
+    ; Ініціалізація тіньового стеку системою (тільки в ядрі/завантажувачі)
+    = msa.stack_address config.SHADOW_STACK_START
+    = msa.stack_size    config.SHADOW_STACK_SIZE
 
     ; Запуск модулів. Компілятор сам розкриє цілі (наприклад, init.milkv_jupiter)
     @ system.hardware.init
