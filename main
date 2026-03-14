@@ -1,4 +1,4 @@
-; MULTIX System Assembly v0.0.17
+; MULTIX System Assembly v0.0.22
 ; Точка входу ОС
 :
     ; Читаємо апаратний номер ядра з регістра CSR
@@ -22,5 +22,6 @@
     ;@ system.panic "main loop exited"
 
 : sleep_core
-    !                       ; HALT (Wait For Interrupt)
+    ; HALT (Wait For Interrupt)
+    !                       
     . sleep_core
