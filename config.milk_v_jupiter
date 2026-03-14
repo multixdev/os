@@ -1,6 +1,4 @@
-ram_start
-ram_max
-stack_size
-free_ram_start
-free_list_head
-page_size
+= RAM_START
+= RAM_MAX
+= SHADOW_STACK_START
+= SHADOW_STACK_SIZE
