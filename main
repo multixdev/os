@@ -19,8 +19,6 @@
     @ system.hardware.wake_up_all_cores
     @ system.process.run
 
-    ;@ system.panic "main loop exited"
-
 : sleep_core
     ; HALT (Wait For Interrupt)
     !                       
