@@ -1,0 +1,4 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="18" y="18" width="64" height="64" transform="rotate(45 50 50)" fill="none" stroke="#D95A00" stroke-width="6" stroke-linejoin="bevel"/>
+    <rect x="36" y="36" width="28" height="28" fill="none" stroke="#007A66" stroke-width="6" stroke-linejoin="bevel"/>
+</svg>
